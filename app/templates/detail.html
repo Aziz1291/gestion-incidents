@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Incident #{{ incident.id }}{% endblock %}
+{% block content %}
+<p><a href="{{ url_for('incidents.accueil') }}">← Retour à la liste</a></p>
+<h1>Incident #{{ incident.id }} — {{ incident.titre }}</h1>
+
+<div class="carte">
+  <dl>
+    <dt>Description</dt><dd>{{ incident.description }}</dd>
+    <dt>Lieu</dt><dd>{{ incident.lieu }}</dd>
+    <dt>Priorité</dt><dd><span class="badge prio-{{ incident.priorite|lower }}">{{ incident.priorite }}</span></dd>
+    <dt>Statut</dt><dd><span class="badge statut-{{ incident.statut|lower|replace(' ', '-') }}">{{ incident.statut }}</span></dd>
+    <dt>Signalé le</dt><dd>{{ incident.date_creation }}</dd>
+  </dl>
+</div>
+{% endblock %}

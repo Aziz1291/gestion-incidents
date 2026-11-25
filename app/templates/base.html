@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Gestion des incidents{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <a class="logo" href="{{ url_for('incidents.accueil') }}">🛠️ Gestion des incidents</a>
+    <a class="btn" href="{{ url_for('incidents.nouveau') }}">+ Signaler un incident</a>
+  </header>
+
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for categorie, message in messages %}
+        <p class="flash flash-{{ categorie }}">{{ message }}</p>
+      {% endfor %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>Version : <code>{{ app_version }}</code></footer>
+</body>
+</html>
