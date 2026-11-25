@@ -4,7 +4,7 @@ Application web **Flask + SQLite** pour signaler et suivre les incidents informa
 (étudiants et enseignants). Elle est livrée par une chaîne DevOps complète :
 **Git → GitHub Actions (CI) → GHCR (CD) → déploiement avec Docker Compose**.
 
-> Binôme : _Nom Prénom 1_ — _Nom Prénom 2_
+> Binôme : Aziz Koki — Mohamed Salah Slimani
 
 ---
 
