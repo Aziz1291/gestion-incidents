@@ -196,7 +196,7 @@ docker images ghcr.io/aziz1291/gestion-incidents
 ## 9. Mission 7 — Déploiement (`compose.deploy.yaml`)
 
 Ce fichier **n'a pas de `build:`** : il utilise directement l'image publiée.
-L'application déployée est exposée sur le port **8080** (pour ne pas entrer en conflit
+L'application déployée est exposée sur le port **8000** (pour ne pas entrer en conflit
 avec la version de développement sur 5000).
 
 ```bash
@@ -204,7 +204,7 @@ docker compose -f compose.deploy.yaml pull       # 1. récupérer l'image
 docker compose -f compose.deploy.yaml up -d      # 2. démarrer
 docker compose -f compose.deploy.yaml ps         # 3. vérifier
 docker compose -f compose.deploy.yaml logs       # 4. journaux
-# http://localhost:8080
+# http://localhost:8000
 ```
 
 ### Mettre à jour l'application
@@ -237,7 +237,7 @@ Voir le dossier [`docs/captures/`](docs/captures/) :
 1. Pipeline CI réussi
 2. Pipeline en échec (test `test_health`) puis corrigé
 3. Package `gestion-incidents` dans GHCR avec les tags `latest` et SHA
-4. Application déployée via `compose.deploy.yaml` (http://localhost:8080)
+4. Application déployée via `compose.deploy.yaml` (http://localhost:8000)
 
 ## 12. Questions de synthèse
 
