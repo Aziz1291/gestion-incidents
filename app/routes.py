@@ -53,6 +53,25 @@ def detail(incident_id):
     return render_template("detail.html", incident=incident, statuts=db.STATUTS)
 
 
+@bp.route("/incidents/<int:incident_id>/statut", methods=["POST"])
+def changer_statut(incident_id):
+    statut = request.form.get("statut")
+    if statut not in db.STATUTS:
+        abort(400)
+    if not db.modifier_statut(incident_id, statut):
+        abort(404)
+    flash(f"Statut mis à jour : {statut}.", "succes")
+    return redirect(url_for("incidents.detail", incident_id=incident_id))
+
+
+@bp.route("/incidents/<int:incident_id>/supprimer", methods=["POST"])
+def supprimer(incident_id):
+    if not db.supprimer_incident(incident_id):
+        abort(404)
+    flash("Incident supprimé.", "succes")
+    return redirect(url_for("incidents.accueil"))
+
+
 # --- API JSON (utile pour les tests et la vérification du déploiement) ------
 
 @bp.route("/health")
