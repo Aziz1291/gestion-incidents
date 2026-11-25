@@ -13,4 +13,20 @@
     <dt>Signalé le</dt><dd>{{ incident.date_creation }}</dd>
   </dl>
 </div>
+
+<div class="actions">
+  <form method="post" action="{{ url_for('incidents.changer_statut', incident_id=incident.id) }}">
+    <select name="statut">
+      {% for s in statuts %}
+        <option value="{{ s }}" {% if s == incident.statut %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+    <button class="btn" type="submit">Modifier le statut</button>
+  </form>
+
+  <form method="post" action="{{ url_for('incidents.supprimer', incident_id=incident.id) }}"
+        onsubmit="return confirm('Supprimer cet incident ?');">
+    <button class="btn btn-danger" type="submit">Supprimer</button>
+  </form>
+</div>
 {% endblock %}
