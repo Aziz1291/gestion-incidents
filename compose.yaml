@@ -1,0 +1,17 @@
+# Environnement de DÉVELOPPEMENT : l'image est CONSTRUITE localement à partir du Dockerfile
+services:
+  web:
+    build: .                          # équivaut à : docker build .
+    image: gestion-incidents:local    # nom donné à l'image construite
+    container_name: gestion-incidents
+    ports:
+      - "5000:5000"                   # port_hôte:port_conteneur
+    environment:
+      DATABASE_PATH: /app/data/incidents.db
+      SECRET_KEY: ${SECRET_KEY:-dev-secret-a-changer}
+    volumes:
+      - incidents_data:/app/data      # persistance de la base SQLite
+    restart: unless-stopped           # redémarre sauf si on l'arrête nous-mêmes
+
+volumes:
+  incidents_data:
