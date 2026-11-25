@@ -76,7 +76,7 @@ def supprimer(incident_id):
 
 @bp.route("/health")
 def health():
-    return jsonify(status="OK")
+    return jsonify(status="ERROR")
 
 
 @bp.route("/api/incidents")
