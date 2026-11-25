@@ -1,0 +1,17 @@
+# Environnement de DÉPLOIEMENT : aucune construction ici (pas de "build:")
+# L'image est RÉCUPÉRÉE (pull) depuis GitHub Container Registry, déjà testée et publiée par cd.yml
+services:
+  web:
+    image: ghcr.io/aziz1291/gestion-incidents:latest
+    container_name: gestion-incidents-prod
+    ports:
+      - "8080:5000"
+    environment:
+      DATABASE_PATH: /app/data/incidents.db
+      SECRET_KEY: ${SECRET_KEY:-change-moi-en-production}
+    volumes:
+      - incidents_prod_data:/app/data
+    restart: always
+
+volumes:
+  incidents_prod_data:
